@@ -2,14 +2,25 @@ const express = require("express");
 const fs = require("fs");
 const session = require("express-session");
 const path = require("path");
-const app = express();
-app.use(express.json());
-app.use(session({
-  secret: "secret",
-  resave: false,
-  saveUninitialized: false
-}));
 
+const app = express();
+
+// ✅ Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  session({
+    secret: "secret_key_change_later",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 // 1 hour
+    }
+  })
+);
+
+// ✅ Auth middleware
 function checkAuth(req, res, next) {
   if (req.session.authenticated) {
     next();
@@ -18,22 +29,19 @@ function checkAuth(req, res, next) {
   }
 }
 
-// Define protected routes before static middleware
+// ✅ Protected route
 app.get("/video.html", checkAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "video.html"));
 });
 
-// Add similar routes here for each additional protected page, e.g.:
-// app.get("/another-page.html", checkAuth, (req, res) => {
-//   res.sendFile(path.join(__dirname, "public", "another-page.html"));
-// });
+// ✅ Static files (login page, css, js, images)
+app.use(express.static(path.join(__dirname, "public")));
 
-// Serve static files (unprotected assets and login page)
-app.use(express.static("public"));
-
+// ✅ Login API
 app.post("/login", (req, res) => {
-  const user = JSON.parse(fs.readFileSync("user.json"));
+  const user = JSON.parse(fs.readFileSync("user.json", "utf8"));
   const { username, password } = req.body;
+
   if (username === user.username && password === user.password) {
     req.session.authenticated = true;
     res.json({
@@ -47,6 +55,9 @@ app.post("/login", (req, res) => {
     });
   }
 });
-app.listen(3000, () => {
-  console.log("Server running → https://sunny1451.github.io/surprise/:3000");
+
+// ✅ REQUIRED for cloud deployment
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("✅ Server running on port:", PORT);
 });
