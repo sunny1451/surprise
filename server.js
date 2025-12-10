@@ -48,5 +48,5 @@ app.post("/login", (req, res) => {
   }
 });
 app.listen(3000, () => {
-  console.log("Server running → http://localhost:3000");
+  console.log("Server running → https://sunny1451.github.io/surprise/:3000");
 });
