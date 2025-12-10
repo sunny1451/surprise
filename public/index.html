@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secret Birthday Access</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="particles"></div>
+  <div class="container">
+    <div class="left">
+      <h1 class="logo">surprise</h1>
+     
+      <div class="image-wrapper">
+        <img src="image.png" class="main-image" alt="birthday surprise">
+        <div class="glow-effect"></div>
+      </div>
+      <p class="subtitle">Enter the code to unlock your gift</p>
+    </div>
+    <div class="right">
+      <h2>Hey there!</h2>
+      <p>I've been waiting for you all day...</p>
+      <input type="text" id="username" placeholder="Username" autocomplete="off"/>
+      <input type="password" id="password" placeholder="Password"/>
+      <button id="unlockBtn">Unlock Surprise</button>
+      <p id="msg"></p>
+    </div>
+  </div>
+  <script>
+    const unlockBtn = document.getElementById("unlockBtn");
+    const msgEl = document.getElementById("msg");
+    async function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      // Basic validation
+      if (!username || !password) {
+        msgEl.innerHTML = "Please fill both fields!";
+        msgEl.style.color = "#ff4444";
+        return;
+      }
+      // Disable button to prevent double click
+      unlockBtn.disabled = true;
+      unlockBtn.textContent = "Unlocking...";
+      try {
+        const res = await fetch("/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (data.success) {
+          msgEl.innerHTML = "Correct! Taking you inside...";
+          msgEl.style.color = "#00ff88";
+          // Smooth redirect to chat page — works instantly!
+          setTimeout(() => {
+            window.location.href = "/vedio.html"; // This is the correct way
+          }, 1200);
+        } else {
+          msgEl.innerHTML = data.message || "Wrong credentials, try again";
+          msgEl.style.color = "#ff4444";
+          unlockBtn.disabled = false;
+          unlockBtn.textContent = "Unlock Surprise";
+        }
+      } catch (err) {
+        msgEl.innerHTML = "No connection... check server";
+        msgEl.style.color = "#ff4444";
+        unlockBtn.disabled = false;
+        unlockBtn.textContent = "Unlock Surprise";
+      }
+    }
+    // Click button OR press Enter
+    unlockBtn.addEventListener("click", login);
+    document.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") login();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forever Yours • Anu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="chatstyle.css" />
+</head>
+<body>
+
+  <div class="chat-master">
+
+    <!-- Floating Hearts -->
+    <div class="hearts-bg"></div>
+
+    <!-- Left Photo -->
+    <div class="photo-frame left-frame">
+      <img src="https://i.pinimg.com/736x/b1/89/0f/b1890f8e169758fb4a994ed31d5be224.jpg" alt="You">
+      <div class="glow-border"></div>
+    </div>
+
+    <!-- Chat Box -->
+    <div class="chat-box">
+      <div class="chat-header">
+        <h2>Our Secret Place</h2>
+        <p>Answer 3 questions to unlock our chat</p>
+      </div>
+
+      <div id="messages" class="messages"></div>
+      <div id="options" class="options"></div>
+
+      <div class="input-area" id="inputArea">
+        <input type="text" id="msgInput" placeholder="Write something beautiful..." />
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+
+    <!-- Right Photo -->
+    <div class="photo-frame right-frame">
+      <img src="https://i.pinimg.com/736x/be/c1/48/bec1485afea8d7636e739135aec36dd7.jpg" alt="Forever">
+      <div class="glow-border"></div>
+    </div>
+
+  </div>
+
+  <script type="module" src="chatscript.js"></script>
+</body>
+</html>

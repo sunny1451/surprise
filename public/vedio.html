@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For You Anu</title>
+  <style>
+    * { margin: 0; padding: 0; }
+    body, html { height: 100%; background: #000; overflow: hidden; }
+    .video-wrapper {
+      position: fixed; inset: 0; z-index: 9999;
+    }
+    video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      color: white; text-align: center; font-family: 'Georgia', serif;
+    }
+    .overlay h1 {
+      font-size: 64px; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+    }
+    .overlay p {
+      font-size: 28px; opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-wrapper">
+    <video id="video1" autoplay muted playsinline>
+      <source src="birthday-video.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <h1>Happy Birthday<br><span style="color:#ff9eca">My Love anu</span></h1>
+      <p>Close your eyes</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("video1").addEventListener("ended", () => {
+      document.querySelector(".video-wrapper").style.opacity = "0";
+      document.querySelector(".video-wrapper").style.transition = "opacity 2s";
+      setTimeout(() => {
+        window.location.href = "http://localhost:3000/home.html";
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

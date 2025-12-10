@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Message For Anupama</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+  <div class="confetti-layer"></div>
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="logo">A & S</div>
+    <nav class="top-nav">
+      <a href="#memories" class="nav-link">Our Journey</a>
+      <a href="/surprise.html" class="nav-link">The Surprise</a>
+      <button class="nav-btn" onclick="window.location.href='/chat.html'">Chat With Me</button>
+      <button class="nav-btn" onclick="goToLogin()">Logout</button>
+    </nav>
+  </header>
+
+  <div class="main-content-wrapper">
+
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div class="hero-image-container">
+        <img src="https://i.pinimg.com/736x/8f/f0/a5/8ff0a513dbdadce87fdcef917d743033.jpg" alt="You & Me" class="hero-img parallax-img" data-speed="0.7">
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+
+      <section class="section-hero">
+        <h1 class="main-title">
+          Happy Birthday,<br>
+          <span class="highlight">My Anupama</span>
+        </h1>
+        <p class="subtitle">A timeless message from the one who loves you most in this world.</p>
+      </section>
+
+      <section id="memories" class="section-gallery">
+        <h2>Our Timeless Memories</h2>
+        <div class="photo-grid-new">
+          <div class="grid-item-new large"><img src="https://i.pinimg.com/1200x/f0/02/7b/f0027b942cf54556b4ad72339fd50cd3.jpg"></div>
+          <div class="grid-item-new medium"><img src="https://i.pinimg.com/736x/a4/ac/90/a4ac90f2fd0d4344d3099717ae3c264a.jpg"></div>
+          <div class="grid-item-new small"><img src="https://i.pinimg.com/736x/28/0c/93/280c931e29d825a598120301bb06782c.jpg"></div>
+          <div class="grid-item-new text-card">
+            <p>Your smile lights up my entire universe. I fall in love with you every single day.</p>
+          </div>
+          <div class="grid-item-new medium"><img src="https://i.pinimg.com/736x/39/d3/29/39d3292c47d4d78403525f61bacc0fb2.jpg"></div>
+          <div class="grid-item-new large"><img src="https://i.pinimg.com/1200x/79/b9/8c/79b98c9163aa18b1525921044e1dea1e.jpg"></div>
+          <div class="grid-item-new small"><img src="https://i.pinimg.com/1200x/cf/df/3d/cfdf3dd5325dda5a95209a8ab2ffe397.jpg"></div>
+          <div class="grid-item-new medium"><img src="https://i.pinimg.com/1200x/2a/86/3f/2a863f11cf2fde15ca4ac6cb694a6144.jpg"></div>
+          <div class="grid-item-new text-card">
+            <p>No words can describe how much you mean to me. You are my home.</p>
+          </div>
+          <div class="grid-item-new medium"><img src="https://i.pinimg.com/1200x/f2/e1/4a/f2e14a61efd723ff857ef28aadf7790b.jpg"></div>
+        </div>
+      </section>
+
+      <section id="gift" class="section-gift">
+        <h2>The Grand Surprise</h2>
+        <p class="gift-intro">Something sweet is waiting just for you...</p>
+        
+        <div class="scratch-box-new">
+          <div id="scratchCard" class="scratch-cube">
+            <canvas id="canvas" width="320" height="320"></canvas>
+            <div class="cube-label">SCRATCH TO REVEAL</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-footer">
+        <p>Made with infinite love — Your Sun</p>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Gift Reveal Modal -->
+  <div id="giftReveal" class="reveal-modal">
+    <div class="modal-box">
+      <button class="close-btn" onclick="closeModal('giftReveal')">&times;</button>
+      <img src="https://i.pinimg.com/1200x/24/89/16/2489160580681547aa3e7f128c0d616b.jpg" alt="Dairy Milk Silk" class="dairy-img">
+      <h3>Your Favorite Dairy Milk Silk</h3>
+      <p>Because nothing says "silky" compares to you</p>
+      <button onclick="openDelivery()" class="final-claim">Claim Your Gift</button>
+    </div>
+  </div>
+
+  <!-- Delivery Form Modal -->
+  <div id="deliveryModal" class="reveal-modal">
+    <div class="modal-box">
+      <button class="close-btn" onclick="closeModal('deliveryModal')">&times;</button>
+      <h3>Where should I deliver your chocolate?</h3>
+      <form id="addressForm">
+        <input type="text" placeholder="Full Name" required>
+        <input type="text" placeholder="Full Address" required>
+        <input type="text" placeholder="City" required>
+        <input type="text" placeholder="PIN Code" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <button type="submit">Send My Gift</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="home.js"></script>
+</body>
+</html>
